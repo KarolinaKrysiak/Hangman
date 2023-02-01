@@ -1,0 +1,38 @@
+body {
+	font-family: sans-serif;
+	text-align: center;
+}
+
+#word {
+	font-size: 36px;
+	margin-top: 50px;
+}
+
+#message {
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+#left {
+	font-size: 24px;
+	margin-top: 20px;
+}
+
+.alphabet {
+	display: inline-block;
+	margin: 10px;
+	padding: 10px 20px;
+	border: 1px solid black;
+	cursor: pointer;
+}
+
+.inactive {
+	opacity: 0.3;
+	cursor: not-allowed;
+}
+
+#win-counter,
+#loss-counter {
+	font-size: 24px;
+	margin-top: 20px;
+}
