@@ -5,6 +5,7 @@ const alphabetEl = document.getElementById("alphabet");
 const winCounterEl = document.getElementById("win-counter");
 const lossCounterEl = document.getElementById("loss-counter");
 
+let words = ["javascript", "html", "github", "python", "function", "java", "visualstudio", "array"];
 let word = "";
 let wordArray = [];
 let alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -21,7 +22,7 @@ function updateDisplay() {
 }
 
 function generateWord() {
-	word = "javascript";
+	word = words[Math.floor(Math.random() * words.length)];
 	wordArray = word.split("").map(function (letter) {
 		return "_";
 	});
@@ -59,7 +60,14 @@ function checkWin() {
 	if (wordArray.indexOf("_") === -1) {
 		messageEl.innerHTML = "You win!";
 		winCounter++;
-		reset();
+		words = words.filter(function (w) {
+			return w !== word;
+		});
+		if (words.length === 0) {
+			messageEl.innerHTML = "Congratulations! You've won the game!";
+		} else {
+			reset();
+		}
 	} else if (tries === 0) {
 		messageEl.innerHTML = "You lose!";
 		lossCounter++;
