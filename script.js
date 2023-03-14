@@ -5,6 +5,7 @@ const alphabetEl = document.getElementById("alphabet");
 const winCounterEl = document.getElementById("win-counter");
 const lossCounterEl = document.getElementById("loss-counter");
 
+// variables used to track game state and keep score
 let words = ["javascript", "html", "github", "python", "function", "java", "visualstudio", "array"];
 let word = "";
 let wordArray = [];
@@ -14,6 +15,7 @@ let tries = 6;
 let winCounter = 0;
 let lossCounter = 0;
 
+// update HTML elements to reflect the current state
 function updateDisplay() {
 	wordEl.innerHTML = wordArray.join(" ");
 	leftEl.innerHTML = `You have ${tries} tries left`;
@@ -21,6 +23,7 @@ function updateDisplay() {
 	lossCounterEl.innerHTML = `Losses: ${lossCounter}`;
 }
 
+// select a word from the list at random
 function generateWord() {
 	word = words[Math.floor(Math.random() * words.length)];
 	wordArray = word.split("").map(function (letter) {
@@ -29,6 +32,7 @@ function generateWord() {
 	updateDisplay();
 }
 
+// create a button for each letter and adds an event listener to call the checkLetter()
 function addLetterButtons() {
 	alphabetArray.forEach(function (letter) {
 		const letterButton = document.createElement("div");
@@ -41,6 +45,7 @@ function addLetterButtons() {
 	});
 }
 
+// update the wordArray to show the correctly guessed letters and the number of tries left
 function checkLetter(letter) {
 	let correct = false;
 	for (let i = 0; i < word.length; i++) {
@@ -56,6 +61,7 @@ function checkLetter(letter) {
 	checkWin();
 }
 
+// check if all the letters are guessed in the word or tries were used up and update the message and score
 function checkWin() {
 	if (wordArray.indexOf("_") === -1) {
 		messageEl.innerHTML = "You win!";
@@ -75,6 +81,7 @@ function checkWin() {
 	}
 }
 
+// reset the game state and generate a new word
 function reset() {
 	tries = 6;
 	alphabetArray.forEach(function (letter) {
